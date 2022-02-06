@@ -9,14 +9,14 @@ var gameTimer = function() {
 
 // Update Timer
 var gameTimerUpdate = function() {
-    gameTimerNum = gameTimerNum - 1;
-    gameTimeEl.textContent = "Time: " + gameTimerNum;
-
     if (gameTimerNum === 0) {
         clearInterval(gameTimer);
+    } else {
+        gameTimerNum = gameTimerNum - 1;
+        gameTimeEl.textContent = "Time: " + gameTimerNum;
+    
+        console.log(gameTimerNum);
     }
-
-    console.log(gameTimerNum);
 }
 
 startButtonEl.addEventListener("click", gameTimer);
