@@ -1,6 +1,6 @@
 var startButtonEl = document.getElementById("start-btn");
 var gameTimeEl = document.getElementById("game-timer");
-var gameTimerNum = 10;
+var gameTimerNum = 75;
 
 // Start the timer
 var gameTimer = function() {
@@ -14,8 +14,6 @@ var gameTimerUpdate = function() {
     } else {
         gameTimerNum = gameTimerNum - 1;
         gameTimeEl.textContent = "Time: " + gameTimerNum;
-    
-        console.log(gameTimerNum);
     }
 }
 
