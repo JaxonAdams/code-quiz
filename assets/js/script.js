@@ -4,6 +4,7 @@ var gameTimerNum = 75;
 var questionCounter = 0;
 var mainSection = document.getElementById("main-section");
 var landingScreen = document.getElementById("landing-screen");
+var questionAnswerA = document.getElementById("answer-a");
 
 // Array of questions, organized as objects
 var quizQuestions = [
@@ -62,24 +63,44 @@ var gameTimerUpdate = function() {
 
 var askQuestions = function() {
     landingScreen.remove();
+    displayQuestion();
 
-    var displayQuestion = function() {
-        // Create container for question elements
-        var questionSection = document.createElement("div");
-        mainSection.setAttribute("id", "landing-screen");
-        mainSection.appendChild(questionSection);
+    // Move counter to next question
+    quizQuestions++;
+}
 
-        // Display question
-        var thisQuestion = document.createElement("h1");
-        thisQuestion.textContent = quizQuestions[questionCounter].question;
-        questionSection.appendChild(thisQuestion);
-    }
+var displayQuestion = function() {
+    // Create container for question elements
+    var questionSection = document.createElement("div");
+    questionSection.setAttribute("id", "landing-screen");
+    mainSection.appendChild(questionSection);
 
-    while (questionCounter < quizQuestions.length) {
-        displayQuestion();
-        console.log(quizQuestions[questionCounter]);
-        questionCounter++;
-    }
+    // Display question
+    var thisQuestion = document.createElement("h1");
+    thisQuestion.textContent = quizQuestions[questionCounter].question;
+    questionSection.appendChild(thisQuestion);
+
+    // Create button section
+    var buttonSection = document.createElement("div");
+    buttonSection.setAttribute("id", "btn-section");
+    mainSection.appendChild(buttonSection);
+
+    // Display answer buttons
+    var thisAnswerA = document.createElement("button");
+    thisAnswerA.setAttribute("class", "answer-btn");
+    thisAnswerA.setAttribute("id", "answer-a");
+    thisAnswerA.textContent = quizQuestions[questionCounter].answerA;
+    buttonSection.appendChild(thisAnswerA);
+
+    listenForAnswer();
+}
+
+var listenForAnswer = function() {
+    document.addEventListener('click',function(e){
+        if(e.target && e.target.id== 'answer-a'){
+            console.log("TEST");
+        }
+    });
 }
 
 startButtonEl.addEventListener("click", startGame);
