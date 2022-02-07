@@ -57,6 +57,11 @@ main p {
     justify-content: space-around;
 }
 
+#validate-section {
+    display: flex;
+    flex-basis: 100%;
+}
+
 footer {
     display: block;
     position: absolute;

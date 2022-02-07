@@ -58,7 +58,7 @@ var startGame = function() {
 
 // Update Timer
 var gameTimerUpdate = function() {
-    if (gameTimerNum === 0) {
+    if (gameTimerNum <= 0) {
         clearInterval(startGame);
     } else {
         gameTimerNum = gameTimerNum - 1;
@@ -112,6 +112,11 @@ var displayQuestion = function() {
     thisAnswerD.textContent = quizQuestions[questionCounter].answerD;
     buttonSection.appendChild(thisAnswerD);
 
+    // Create section for 'correct' or 'incorrect'
+    var validateSection = document.createElement("div");
+    validateSection.setAttribute("id", "validate-section");
+    mainSection.appendChild(validateSection);
+
     // Move counter to next question
     questionCounter++;
 
@@ -126,9 +131,19 @@ var listenForAnswer = function() {
 
                 // Validate answer clicked
                 if (e.target.id== "answer-c") {
-                        alert("Correct!");
+                        // Display Correct on screen
+                        var thisIsCorrect = document.createElement("p");
+                        thisIsCorrect.setAttribute("id", "validate-correct");
+                        thisIsCorrect.setAttribute("class", "validate");
+                        mainSection.appendChild(thisIsCorrect);
+
                     } else if (e.target.id== "answer-a" || e.target.id== "answer-b" || e.target.id== "answer-d") {
-                        alert("Incorrect!");
+                        var thisIsIncorrect = document.createElement("p");
+                        thisIsIncorrect.setAttribute("id", "validate-incorrect");
+                        thisIsIncorrect.setAttribute("class", "validate");
+                        mainSection.appendChild(thisIsIncorrect);
+
+                        gameTimerNum = gameTimerNum - 10;
                     }
                 
                 // Clear previous question
@@ -142,6 +157,24 @@ var listenForAnswer = function() {
                 previousAnswerB.remove();
                 previousAnswerC.remove();
                 previousAnswerD.remove();
+            } else if (questionCounter = quizQuestions.length) {
+                if (e.target.id== "answer-c") {
+                    // Display Correct on screen
+                    var thisIsCorrect = document.createElement("p");
+                    thisIsCorrect.setAttribute("id", "validate-correct");
+                    thisIsCorrect.setAttribute("class", "validate");
+                    mainSection.appendChild(thisIsCorrect);
+
+                } else if (e.target.id== "answer-a" || e.target.id== "answer-b" || e.target.id== "answer-d") {
+                    // Display Incorrect on screen
+                    var thisIsIncorrect = document.createElement("p");
+                    thisIsIncorrect.setAttribute("id", "validate-incorrect");
+                    thisIsIncorrect.setAttribute("class", "validate");
+                    mainSection.appendChild(thisIsIncorrect);
+
+                    // Deduct time/points
+                    gameTimerNum = gameTimerNum - 10;
+                }
             }
         }
     });
