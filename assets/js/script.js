@@ -13,35 +13,40 @@ var quizQuestions = [
         answerA: "A. Strings",
         answerB: "B. Booleans",
         answerC: "C. Alerts",
-        answerD: "D. Numbers"
+        answerD: "D. Numbers",
+        correctAnswer: "C"
     },
     {
         question: "The condition in an if / else statement is enclosed with _______.",
         answerA: "A. Quotes",
         answerB: "B. Curly brackets",
         answerC: "C. Parenthesis",
-        answerD: "D. Square brackets"
+        answerD: "D. Square brackets",
+        correctAnswer: "C"
     },
     {
         question: "Arrays in JavaScript can be used to store _________.",
         answerA: "A. Numbers and strings",
         answerB: "B. Other arrays",
-        answerC: "C. Booleans",
-        answerD: "D. All of the above"
+        answerC: "C. A, B, and D",
+        answerD: "D. Booleans",
+        correctAnswer: "C"
     },
     {
         question: "String values must be enclosed within _______ when beingassigned to variables.",
         answerA: "A. Commas",
         answerB: "B. Curly brackets",
         answerC: "C. Quotes",
-        answerD: "D. Parenthesis"
+        answerD: "D. Parenthesis",
+        correctAnswer: "C"
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answerA: "A. JavaScript",
         answerB: "B. Terminal/Bash",
-        answerC: "C. For loops",
-        answerD: "D. console.log()"
+        answerC: "C. console.log()",
+        answerD: "D. For loops",
+        correctAnswer: "C"
     }
 ]
 
@@ -114,10 +119,17 @@ var displayQuestion = function() {
 }
 
 var listenForAnswer = function() {
-    document.addEventListener('click',function(e){
-        if((e.target && e.target.id== 'answer-a') || (e.target && e.target.id== 'answer-b') || (e.target && e.target.id== 'answer-c') || (e.target && e.target.id== 'answer-d')){
+    document.addEventListener("click",function(e){
+        if((e.target && e.target.id== "answer-a") || (e.target && e.target.id== "answer-b") || (e.target && e.target.id== "answer-c") || (e.target && e.target.id== "answer-d")){
             if (questionCounter < quizQuestions.length) {
                 displayQuestion();
+
+                // Validate answer clicked
+                if (e.target.id== "answer-c") {
+                        alert("Correct!");
+                    } else if (e.target.id== "answer-a" || e.target.id== "answer-b" || e.target.id== "answer-d") {
+                        alert("Incorrect!");
+                    }
                 
                 // Clear previous question
                 var previousQuestion = document.querySelector("#landing-screen");
