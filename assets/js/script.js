@@ -3,6 +3,7 @@ var gameTimeEl = document.getElementById("game-timer");
 var gameTimerNum = 75;
 var questionCounter = 0;
 var mainSection = document.getElementById("main-section");
+var landingScreen = document.getElementById("landing-screen");
 
 // Array of questions, organized as objects
 var quizQuestions = [
@@ -60,14 +61,9 @@ var gameTimerUpdate = function() {
 }
 
 var askQuestions = function() {
+    landingScreen.remove();
 
     var displayQuestion = function() {
-        // Clear previous question
-        var landingScreen = document.querySelectorAll("div[id^='landing-screen']");
-        if (landingScreen.length > 0) {
-            landingScreen[0].remove();
-        }
-
         // Create container for question elements
         var questionSection = document.createElement("div");
         mainSection.setAttribute("id", "landing-screen");
@@ -75,7 +71,7 @@ var askQuestions = function() {
 
         // Display question
         var thisQuestion = document.createElement("h1");
-        thisQuestion.textContent = quizQuestions[questionCounter];
+        thisQuestion.textContent = quizQuestions[questionCounter].question;
         questionSection.appendChild(thisQuestion);
     }
 
