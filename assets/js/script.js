@@ -89,6 +89,24 @@ var displayQuestion = function() {
     thisAnswerA.textContent = quizQuestions[questionCounter].answerA;
     buttonSection.appendChild(thisAnswerA);
 
+    var thisAnswerB = document.createElement("button");
+    thisAnswerB.setAttribute("class", "answer-btn");
+    thisAnswerB.setAttribute("id", "answer-b");
+    thisAnswerB.textContent = quizQuestions[questionCounter].answerB;
+    buttonSection.appendChild(thisAnswerB);
+
+    var thisAnswerC = document.createElement("button");
+    thisAnswerC.setAttribute("class", "answer-btn");
+    thisAnswerC.setAttribute("id", "answer-c");
+    thisAnswerC.textContent = quizQuestions[questionCounter].answerC;
+    buttonSection.appendChild(thisAnswerC);
+
+    var thisAnswerD = document.createElement("button");
+    thisAnswerD.setAttribute("class", "answer-btn");
+    thisAnswerD.setAttribute("id", "answer-d");
+    thisAnswerD.textContent = quizQuestions[questionCounter].answerD;
+    buttonSection.appendChild(thisAnswerD);
+
     // Move counter to next question
     questionCounter++;
 
@@ -97,15 +115,21 @@ var displayQuestion = function() {
 
 var listenForAnswer = function() {
     document.addEventListener('click',function(e){
-        if(e.target && e.target.id== 'answer-a'){
+        if((e.target && e.target.id== 'answer-a') || (e.target && e.target.id== 'answer-b') || (e.target && e.target.id== 'answer-c') || (e.target && e.target.id== 'answer-d')){
             if (questionCounter < quizQuestions.length) {
                 displayQuestion();
                 
                 // Clear previous question
                 var previousQuestion = document.querySelector("#landing-screen");
                 var previousAnswerA = document.querySelector("#answer-a");
+                var previousAnswerB = document.querySelector("#answer-b");
+                var previousAnswerC = document.querySelector("#answer-c");
+                var previousAnswerD = document.querySelector("#answer-d");
                 previousQuestion.remove();
                 previousAnswerA.remove();
+                previousAnswerB.remove();
+                previousAnswerC.remove();
+                previousAnswerD.remove();
             }
         }
     });

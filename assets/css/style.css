@@ -29,7 +29,7 @@ main p {
     justify-content: center;
 }
 
-.start-btn {
+.start-btn, .answer-btn {
     border: none;
     border-radius: 8px;
     background-color: tomato;
@@ -43,12 +43,18 @@ main p {
     cursor: pointer;
 }
 
-.start-btn:hover {
+.start-btn:hover, .answer-btn:hover {
     box-shadow: 0 0 5px black;
 }
 
-.start-btn:active {
-    box-shadow: 0 0 0 black;
+.start-btn:active, .start-btn:active {
+    box-shadow: none;
+}
+
+#btn-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 footer {
