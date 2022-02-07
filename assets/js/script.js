@@ -64,9 +64,6 @@ var gameTimerUpdate = function() {
 var askQuestions = function() {
     landingScreen.remove();
     displayQuestion();
-
-    // Move counter to next question
-    quizQuestions++;
 }
 
 var displayQuestion = function() {
@@ -92,13 +89,24 @@ var displayQuestion = function() {
     thisAnswerA.textContent = quizQuestions[questionCounter].answerA;
     buttonSection.appendChild(thisAnswerA);
 
+    // Move counter to next question
+    questionCounter++;
+
     listenForAnswer();
 }
 
 var listenForAnswer = function() {
     document.addEventListener('click',function(e){
         if(e.target && e.target.id== 'answer-a'){
-            console.log("TEST");
+            if (questionCounter < quizQuestions.length) {
+                displayQuestion();
+                
+                // Clear previous question
+                var previousQuestion = document.querySelector("#landing-screen");
+                var previousAnswerA = document.querySelector("#answer-a");
+                previousQuestion.remove();
+                previousAnswerA.remove();
+            }
         }
     });
 }
