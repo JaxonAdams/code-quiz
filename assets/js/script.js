@@ -9,7 +9,6 @@ var questionTwo = document.querySelector("#question-two");
 var questionThree = document.querySelector("#question-three");
 var questionFour = document.querySelector("#question-four");
 var questionFive = document.querySelector("#question-five");
-var answerBtn = document.querySelectorAll(".answer-btn");
 
 // Array of questions, organized as objects (for reference)
 var quizQuestions = [
@@ -78,38 +77,52 @@ var askQuestions = function() {
 }
 
 var displayQuestionFive = function() {
+    document.querySelector("#question-four").classList.remove("show");
+    document.querySelector("#question-four").classList.add("hide");
+
     document.querySelector("#question-five").classList.remove("hide");
     document.querySelector("#question-five").classList.add("show");
 
-    answerBtn.addEventListener("click", endScreen());
+    $(".answer-btn").on("click", function() {
+        console.log("end of game");
+    });
 }
 
 var displayQuestionFour = function() {
+    document.querySelector("#question-three").classList.remove("show");
+    document.querySelector("#question-three").classList.add("hide");
+
     document.querySelector("#question-four").classList.remove("hide");
     document.querySelector("#question-four").classList.add("show");
 
-    answerBtn.addEventListener("click", displayQuestionFive());
+    $(".answer-btn").on("click", displayQuestionFive);
 }
 
 var displayQuestionThree = function() {
+    document.querySelector("#question-two").classList.remove("show");
+    document.querySelector("#question-two").classList.add("hide");
+
     document.querySelector("#question-three").classList.remove("hide");
     document.querySelector("#question-three").classList.add("show");
 
-    answerBtn.addEventListener("click", displayQuestionFour());
+    $(".answer-btn").on("click", displayQuestionFour);
 }
 
 var displayQuestionTwo = function() {
+    document.querySelector("#question-one").classList.remove("show");
+    document.querySelector("#question-one").classList.add("hide");
+
     document.querySelector("#question-two").classList.remove("hide");
     document.querySelector("#question-two").classList.add("show");
 
-    answerBtn.addEventListener("click", displayQuestionThree());
+    $(".answer-btn").on("click", displayQuestionThree);
 }
 
 var displayQuestionOne = function() {
     document.querySelector("#question-one").classList.remove("hide");
     document.querySelector("#question-one").classList.add("show");
 
-    answerBtn.addEventListener("click", displayQuestionTwo());
+    $(".answer-btn").on("click", displayQuestionTwo);
 }
 
 startButtonEl.addEventListener("click", startGame);
