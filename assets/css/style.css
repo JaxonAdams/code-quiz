@@ -69,3 +69,12 @@ footer {
     text-align: center;
     font-size: 18px;
 }
+
+/* Set up show/hide classes to be added through JS */
+.hide {
+    display: none;
+}
+
+.show {
+    display: initial;
+}

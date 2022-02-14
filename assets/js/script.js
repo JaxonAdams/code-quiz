@@ -1,12 +1,17 @@
 var startButtonEl = document.getElementById("start-btn");
 var gameTimeEl = document.getElementById("game-timer");
 var gameTimerNum = 75;
-var questionCounter = 0;
+var questionCounter = 1;
 var mainSection = document.getElementById("main-section");
 var landingScreen = document.getElementById("landing-screen");
-var questionAnswerA = document.getElementById("answer-a");
+var questionOne = document.querySelector("#question-one");
+var questionTwo = document.querySelector("#question-two");
+var questionThree = document.querySelector("#question-three");
+var questionFour = document.querySelector("#question-four");
+var questionFive = document.querySelector("#question-five");
+var answerBtn = document.querySelectorAll(".answer-btn");
 
-// Array of questions, organized as objects
+// Array of questions, organized as objects (for reference)
 var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -28,9 +33,9 @@ var quizQuestions = [
         question: "Arrays in JavaScript can be used to store _________.",
         answerA: "A. Numbers and strings",
         answerB: "B. Other arrays",
-        answerC: "C. A, B, and D",
-        answerD: "D. Booleans",
-        correctAnswer: "C"
+        answerC: "C. Booleans",
+        answerD: "D. All of the above",
+        correctAnswer: "D"
     },
     {
         question: "String values must be enclosed within _______ when beingassigned to variables.",
@@ -67,117 +72,44 @@ var gameTimerUpdate = function() {
 }
 
 var askQuestions = function() {
-    landingScreen.remove();
-    displayQuestion();
+    landingScreen.classList.remove("show");
+    landingScreen.classList.add("hide");
+    displayQuestionOne();
 }
 
-var displayQuestion = function() {
-    // Create container for question elements
-    var questionSection = document.createElement("div");
-    questionSection.setAttribute("id", "landing-screen");
-    mainSection.appendChild(questionSection);
+var displayQuestionFive = function() {
+    document.querySelector("#question-five").classList.remove("hide");
+    document.querySelector("#question-five").classList.add("show");
 
-    // Display question
-    var thisQuestion = document.createElement("h1");
-    thisQuestion.textContent = quizQuestions[questionCounter].question;
-    questionSection.appendChild(thisQuestion);
-
-    // Create button section
-    var buttonSection = document.createElement("div");
-    buttonSection.setAttribute("id", "btn-section");
-    mainSection.appendChild(buttonSection);
-
-    // Display answer buttons
-    var thisAnswerA = document.createElement("button");
-    thisAnswerA.setAttribute("class", "answer-btn");
-    thisAnswerA.setAttribute("id", "answer-a");
-    thisAnswerA.textContent = quizQuestions[questionCounter].answerA;
-    buttonSection.appendChild(thisAnswerA);
-
-    var thisAnswerB = document.createElement("button");
-    thisAnswerB.setAttribute("class", "answer-btn");
-    thisAnswerB.setAttribute("id", "answer-b");
-    thisAnswerB.textContent = quizQuestions[questionCounter].answerB;
-    buttonSection.appendChild(thisAnswerB);
-
-    var thisAnswerC = document.createElement("button");
-    thisAnswerC.setAttribute("class", "answer-btn");
-    thisAnswerC.setAttribute("id", "answer-c");
-    thisAnswerC.textContent = quizQuestions[questionCounter].answerC;
-    buttonSection.appendChild(thisAnswerC);
-
-    var thisAnswerD = document.createElement("button");
-    thisAnswerD.setAttribute("class", "answer-btn");
-    thisAnswerD.setAttribute("id", "answer-d");
-    thisAnswerD.textContent = quizQuestions[questionCounter].answerD;
-    buttonSection.appendChild(thisAnswerD);
-
-    // Create section for 'correct' or 'incorrect'
-    var validateSection = document.createElement("div");
-    validateSection.setAttribute("id", "validate-section");
-    mainSection.appendChild(validateSection);
-
-    // Move counter to next question
-    questionCounter++;
-
-    listenForAnswer();
+    answerBtn.addEventListener("click", endScreen());
 }
 
-var listenForAnswer = function() {
-    document.addEventListener("click",function(e){
-        if((e.target && e.target.id== "answer-a") || (e.target && e.target.id== "answer-b") || (e.target && e.target.id== "answer-c") || (e.target && e.target.id== "answer-d")){
-            if (questionCounter < quizQuestions.length) {
-                displayQuestion();
+var displayQuestionFour = function() {
+    document.querySelector("#question-four").classList.remove("hide");
+    document.querySelector("#question-four").classList.add("show");
 
-                // Validate answer clicked
-                if (e.target.id== "answer-c") {
-                        // Display Correct on screen
-                        var thisIsCorrect = document.createElement("p");
-                        thisIsCorrect.setAttribute("id", "validate-correct");
-                        thisIsCorrect.setAttribute("class", "validate");
-                        mainSection.appendChild(thisIsCorrect);
+    answerBtn.addEventListener("click", displayQuestionFive());
+}
 
-                    } else if (e.target.id== "answer-a" || e.target.id== "answer-b" || e.target.id== "answer-d") {
-                        var thisIsIncorrect = document.createElement("p");
-                        thisIsIncorrect.setAttribute("id", "validate-incorrect");
-                        thisIsIncorrect.setAttribute("class", "validate");
-                        mainSection.appendChild(thisIsIncorrect);
+var displayQuestionThree = function() {
+    document.querySelector("#question-three").classList.remove("hide");
+    document.querySelector("#question-three").classList.add("show");
 
-                        gameTimerNum = gameTimerNum - 10;
-                    }
-                
-                // Clear previous question
-                var previousQuestion = document.querySelector("#landing-screen");
-                var previousAnswerA = document.querySelector("#answer-a");
-                var previousAnswerB = document.querySelector("#answer-b");
-                var previousAnswerC = document.querySelector("#answer-c");
-                var previousAnswerD = document.querySelector("#answer-d");
-                previousQuestion.remove();
-                previousAnswerA.remove();
-                previousAnswerB.remove();
-                previousAnswerC.remove();
-                previousAnswerD.remove();
-            } else if (questionCounter = quizQuestions.length) {
-                if (e.target.id== "answer-c") {
-                    // Display Correct on screen
-                    var thisIsCorrect = document.createElement("p");
-                    thisIsCorrect.setAttribute("id", "validate-correct");
-                    thisIsCorrect.setAttribute("class", "validate");
-                    mainSection.appendChild(thisIsCorrect);
+    answerBtn.addEventListener("click", displayQuestionFour());
+}
 
-                } else if (e.target.id== "answer-a" || e.target.id== "answer-b" || e.target.id== "answer-d") {
-                    // Display Incorrect on screen
-                    var thisIsIncorrect = document.createElement("p");
-                    thisIsIncorrect.setAttribute("id", "validate-incorrect");
-                    thisIsIncorrect.setAttribute("class", "validate");
-                    mainSection.appendChild(thisIsIncorrect);
+var displayQuestionTwo = function() {
+    document.querySelector("#question-two").classList.remove("hide");
+    document.querySelector("#question-two").classList.add("show");
 
-                    // Deduct time/points
-                    gameTimerNum = gameTimerNum - 10;
-                }
-            }
-        }
-    });
+    answerBtn.addEventListener("click", displayQuestionThree());
+}
+
+var displayQuestionOne = function() {
+    document.querySelector("#question-one").classList.remove("hide");
+    document.querySelector("#question-one").classList.add("show");
+
+    answerBtn.addEventListener("click", displayQuestionTwo());
 }
 
 startButtonEl.addEventListener("click", startGame);
