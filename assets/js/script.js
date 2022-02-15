@@ -266,6 +266,17 @@ var endGame = function() {
     $("#display-score").text("You earned a score of " + playerScore + ".");
 
     gameTimerNum = 0;
+
+    $(".submit-btn").on("click", function() {
+        // save high scores
+        var initials = $(".initials-form").val();
+
+        localStorage.setItem("playerName", initials);
+        localStorage.setItem("playerScore", playerScore);
+
+        console.log(localStorage.getItem("playerName"));
+        console.log(localStorage.getItem("playerScore"));
+    });
 }
 
 startButtonEl.addEventListener("click", startGame);
