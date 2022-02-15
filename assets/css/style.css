@@ -24,12 +24,23 @@ main p {
     font-size: 20px;
 }
 
-.start-quiz {
+.start-quiz, .end-quiz, .end-game-form {
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.start-btn, .answer-btn {
+.end-game-form {
+    flex-direction: column;
+}
+
+.submit-btn, .initials-form {
+    width: 5%;
+    height: 100%;
+}
+
+.start-btn, .answer-btn, .submit-btn {
     border: none;
     border-radius: 8px;
     background-color: tomato;
@@ -43,11 +54,16 @@ main p {
     cursor: pointer;
 }
 
-.start-btn:hover, .answer-btn:hover {
+.submit-btn {
+    padding: 5px;
+    text-align: center;
+}
+
+.start-btn:hover, .answer-btn:hover, .submit-btn:hover {
     box-shadow: 0 0 5px black;
 }
 
-.start-btn:active, .start-btn:active {
+.start-btn:active, .start-btn:active, .submit-btn:active {
     box-shadow: none;
 }
 
@@ -55,11 +71,6 @@ main p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
-
-#validate-section {
-    display: flex;
-    flex-basis: 100%;
 }
 
 footer {

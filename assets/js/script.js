@@ -89,17 +89,21 @@ var displayQuestionFiveCorrect = function() {
     $(".answer-5a").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
     $(".answer-5b").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
     $(".answer-5c").on("click", function() {
         alert("Correct!");
+        endGame();
     });
     $(".answer-5d").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
 }
 
@@ -118,17 +122,21 @@ var displayQuestionFiveIncorrect = function() {
     $(".answer-5a").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
     $(".answer-5b").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
     $(".answer-5c").on("click", function() {
         alert("Correct!");
+        endGame();
     });
     $(".answer-5d").on("click", function() {
         alert("Incorrect!");
         gameTimerNum = gameTimerNum - 10;
+        endGame();
     });
 }
 
@@ -243,6 +251,21 @@ var displayQuestionOne = function() {
     $(".answer-1b").on("click", displayQuestionTwoIncorrect);
     $(".answer-1c").on("click", displayQuestionTwoCorrect);
     $(".answer-1d").on("click", displayQuestionTwoIncorrect);
+}
+
+// Set endgame state
+var endGame = function() {
+    document.querySelector("#question-five").classList.remove("show");
+    document.querySelector("#question-five").classList.add("hide");
+
+    document.querySelector("#end-game").classList.remove("hide");
+    document.querySelector("#end-game").classList.add("show");
+
+    playerScore = gameTimerNum;
+
+    $("#display-score").text("You earned a score of " + playerScore + ".");
+
+    gameTimerNum = 0;
 }
 
 startButtonEl.addEventListener("click", startGame);
