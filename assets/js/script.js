@@ -64,6 +64,7 @@ var startGame = function() {
 var gameTimerUpdate = function() {
     if (gameTimerNum <= 0) {
         clearInterval(startGame);
+        endGame();
     } else {
         gameTimerNum = gameTimerNum - 1;
         gameTimeEl.textContent = "Time: " + gameTimerNum;
