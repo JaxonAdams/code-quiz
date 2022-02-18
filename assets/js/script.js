@@ -10,50 +10,6 @@ var questionThree = document.querySelector("#question-three");
 var questionFour = document.querySelector("#question-four");
 var questionFive = document.querySelector("#question-five");
 
-// Array of questions, organized as objects (for reference)
-var quizQuestions = [
-    {
-        question: "Commonly used data types DO NOT include:",
-        answerA: "A. Strings",
-        answerB: "B. Booleans",
-        answerC: "C. Alerts",
-        answerD: "D. Numbers",
-        correctAnswer: "C"
-    },
-    {
-        question: "The condition in an if / else statement is enclosed with _______.",
-        answerA: "A. Quotes",
-        answerB: "B. Curly brackets",
-        answerC: "C. Parenthesis",
-        answerD: "D. Square brackets",
-        correctAnswer: "C"
-    },
-    {
-        question: "Arrays in JavaScript can be used to store _________.",
-        answerA: "A. Numbers and strings",
-        answerB: "B. Other arrays",
-        answerC: "C. Booleans",
-        answerD: "D. All of the above",
-        correctAnswer: "D"
-    },
-    {
-        question: "String values must be enclosed within _______ when beingassigned to variables.",
-        answerA: "A. Commas",
-        answerB: "B. Curly brackets",
-        answerC: "C. Quotes",
-        answerD: "D. Parenthesis",
-        correctAnswer: "C"
-    },
-    {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answerA: "A. JavaScript",
-        answerB: "B. Terminal/Bash",
-        answerC: "C. console.log()",
-        answerD: "D. For loops",
-        correctAnswer: "C"
-    }
-]
-
 // Start the timer
 var startGame = function() {
     setInterval(gameTimerUpdate, 1000);
