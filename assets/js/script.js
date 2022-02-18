@@ -222,7 +222,7 @@ var endGame = function() {
 
     $("#display-score").text("You earned a score of " + playerScore + ".");
 
-    gameTimerNum = 0;
+    gameTimeEl.textContent = "75";
 
     $(".submit-btn").on("click", function() {
         // save high scores
@@ -230,6 +230,8 @@ var endGame = function() {
 
         localStorage.setItem("playerName", initials);
         localStorage.setItem("playerScore", playerScore);
+
+        alert("Score saved!");
 
         console.log(localStorage.getItem("playerName"));
         console.log(localStorage.getItem("playerScore"));
